@@ -1,14 +1,26 @@
-#contact-info{
+#contact-info {
   font-size: .8em;
 }
 
-.job{
+.job {
   background-color: #e9e5dc;
   padding: 20px;
   margin: 20px 20px;
   border-radius: 15px;
 }
 
-.list{
+.list {
   font-size: .8em;
+}
+
+.job:hover {
+  background-color: blue;
+}
+
+section > h3 {
+  color: green;
+}
+
+#coach {
+  color: black;
 }
