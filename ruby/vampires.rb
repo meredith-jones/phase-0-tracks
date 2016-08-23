@@ -15,8 +15,16 @@ def employee_screening()
         garlic_preference = gets.chomp
         puts "Would you like to enroll in the company’s health insurance? (y/n)"
         health_insurance = gets.chomp
+        allergy = ""
+        until allergy == "done"
+          puts "Please list allergies:"
+          allergy = gets.chomp
+          if allergy == "sunshine"
+            break
+          end
+        end
 
-            if name == "Drake Cula" || name == "Tu Fang"
+            if name == "Drake Cula" || name == "Tu Fang" || allergy == "sunshine"
               is_vamp = "Definitely a vampire"
             elsif (age != 2016 - birth_year) && (garlic_preference == "n") && (health_insurance == "n")
               is_vamp = "Almost certainly a vampire"
