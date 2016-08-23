@@ -1,3 +1,43 @@
 html {
   background-color: #06c1a2;
+  font-family: Helvetica, sans-serif;
 }
+
+header{
+  margin: 10px;
+  padding: 15px;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 15px;
+
+}
+
+.column-1 {
+  color: green;
+  background-color: white;
+  float: left;
+  width : 40%;
+  padding : 15px;
+  border: 3px solid black;
+  border-radius: 15px;
+  margin: 5px;
+  margin-left: 25px;
+  }
+
+.column-2 {
+  color: orange;
+  background-color: white;
+  float: right;
+  width: 40%;
+  padding: 15px;
+  border: 3px solid black;
+  border-radius: 15px;
+  margin: 5px;
+  margin-right: 25px;
+  }
+
+ footer {
+   clear: left;
+   text-align : center;
+   padding: 5px;
+ }
