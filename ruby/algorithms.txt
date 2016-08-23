@@ -30,11 +30,94 @@ Write the algorithm for using an elevator:
 -To exit the elevator, head toward the door of the elevator.
     -When the door opens, proceed straight out of the elevator.
 
-
-
-
-
+***************************************************************************
+***************************************************************************
 
 Come up with an example of a common task in your life that could be translated into an algorithm, and write out the steps in algorithms.txt (labeled with the name of the task).
 
-Submit the GitHub URL of your file to complete this challenge.
+Make a PB&J:
+
+Search the kitchen for:
+    -Bread
+        -If you find bread:
+            -Check the expiration date.
+                -Make note of today's date.
+                -If the expriation date is before today's date:
+                    -Inspect the bread to determine if it is safe.
+                        -If it looks, smells, and feels safe, you may continue making your sandwich.
+                        -If it has mold on it, abort. Find something else to eat.
+                -If the expriation date is after today's date:
+                      -Proceed to looking for peanut butter.
+            -If you don't find bread, abort. Find something else to eat.
+    -Peanut Butter
+        -If you find peanut butter:
+            -Check the expiration date.
+                -Make note of today's date.
+                -If the expriation date is before today's date:
+                    -Inspect the PB to determine if it is safe.
+                        -If it looks, smells, and feels safe, you may continue making your sandwich.
+                        -If it has mold in it, abort. Find something else to eat.
+                -If the expriation date is after today's date:
+                      -Proceed to looking for jelly.
+        -If you don't find peanut butter, abort. Find something else to eat.
+    -Jelly
+        -If you find jelly:
+            -Check the expiration date.
+                -Make note of today's date.
+                -If the expriation date is before today's date:
+                    -Inspect the jelly to determine if it is safe.
+                        -If it looks, smells, and feels safe, you may continue making your sandwich.
+                        -If it has mold in it, abort. Find something else to eat.
+                -If the expriation date is after today's date:
+                      -Proceed to looking for a knife.
+        -If you don't find jelly, look for honey.
+        -If you don't find honey, look for bananas.
+        -If you don't find bananas, find something else to eat.
+    -A knife
+      -If you find a knife:
+          -Is it clean?
+              -If yes, proceed to looking for a plate.
+              -If no, wash the knife.
+      -If you don't find a knife, look for a spoon.
+    -A plate
+      -If you find a plate:
+          -Is it clean?
+              -If yes, proceed to making sandwich.
+              -If no, wash the plate.
+      -If you don't find a plate, look for a paper towel.
+
+Make the sandwich:
+  -Open the bag containing the bread.
+    -Take 2 pieces of bread from the bag.
+    -Close the bag.
+    -Place the pieces side by side on a plate.
+
+  -Open the container of peanut butter.
+    -With knife, gather peanut butter from container.
+    -With knife, evenly distribute peanut butter across bread.
+        -If there are any empty spots on bread with no peanut butter
+            -If there is enough peanut butter to spread:
+                -Continue to spread peanut butter around.
+            -If there is not enough peanut butter to spread:
+                -gather more peanut butter from contianer.
+                -Add the gathered peanut butter to bread
+                -Fill in gaps until evenly distributed.
+
+  -Open the container of jelly.
+    -With knife, gather jelly from container.
+    -Identify the slice of bread that does not have peanut butter on it.
+    -With knife, evenly distribute jelly across identified bread.
+        -If there are any empty spots on bread with no jelly:
+            -If there is enough jelly to spread:
+                -Continue to spread jelly around.
+            -If there is not enough jelly to spread:
+                -Gather more jelly from contianer.
+                -Add the gathered jelly to bread
+                -Fill in gaps until evenly distributed.
+
+  -Set down knife.
+  -Pick up the piece of bread with jelly on it.
+      -Place it face down on top of the piece of bread with peanut butter on it.
+      -Make sure the edges of the bread are lined.
+
+  -Enjoy.
