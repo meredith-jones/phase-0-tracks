@@ -12,13 +12,13 @@ def employee_screening()
         puts "What year were you born?"
         birth_year = gets.chomp.to_i
         puts "Do you like garlic bread? (y/n)"
-        garlic_preference = gets.chomp
+        garlic_preference = gets.chomp.downcase
         puts "Would you like to enroll in the company’s health insurance? (y/n)"
-        health_insurance = gets.chomp
+        health_insurance = gets.chomp.downcase
         allergy = ""
         until allergy == "done"
-          puts "Please list allergies:"
-          allergy = gets.chomp
+          puts "Please list allergies: (type 'done' when you're done)"
+          allergy = gets.chomp.downcase
           if allergy == "sunshine"
             break
           end
@@ -38,7 +38,7 @@ def employee_screening()
       puts "Survey results: #{is_vamp}."
       counter += 1
   end
-
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
 
 end
 
