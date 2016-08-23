@@ -4,7 +4,6 @@ def employee_screening()
 
   counter = 0
   while counter < num_employees
-
         puts "What is your name?"
         name = gets.chomp
         puts "How old are you?"
@@ -16,12 +15,12 @@ def employee_screening()
         puts "Would you like to enroll in the company’s health insurance? (y/n)"
         health_insurance = gets.chomp.downcase
         allergy = ""
-        until allergy == "done"
-          puts "Please list allergies: (type 'done' when you're done)"
-          allergy = gets.chomp.downcase
-          if allergy == "sunshine"
-            break
-          end
+            until allergy == "done"
+              puts "Please list allergies: (type 'done' when you're done)"
+              allergy = gets.chomp.downcase
+              if allergy == "sunshine"
+                break
+              end
         end
 
             if name == "Drake Cula" || name == "Tu Fang" || allergy == "sunshine"
@@ -38,8 +37,8 @@ def employee_screening()
       puts "Survey results: #{is_vamp}."
       counter += 1
   end
-puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
 
+puts "Actually, never mind! What do these questions have to do with anything? Let's all be friends."
 end
 
 employee_screening()
