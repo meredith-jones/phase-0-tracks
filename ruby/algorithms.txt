@@ -1,0 +1,40 @@
+Write the algorithm for using an elevator:
+
+-Determine which floor you need to go to.
+-Determine which floor you are currently on.
+    -Is your destination floor greater or lower in value than your current floor?
+        -If greater, press the up arrow outside the elevator to indicate that you'd like to go up.
+          -The button will light up when you press it successfully.
+        -If lower, press the down arrow outside the elevator to indicate that you'd like to go down.
+          -The button will light up when you press it successfully.
+       -If your destination floor is the same as your current floor, you don't need to take the elevator, so you can leave the elevator area.
+
+-When the elevator arrives, the button that you pressed will lose it's illumination, and that will indicate that you are to get on the next open elevator.
+    -Look around to see which elevator is open.
+    -If the arrow at the top of the elevator door corresponds with the arrow you pressed, and the doors are open, and people have finished exiting the elevator, you may now get on the elevator.
+
+-Once inside the elevator, you check the wall near the door for a panel of buttons.
+    -If the panel is not to the right of the door, check to the left of the door.
+
+-Scan the buttons and press the button that corresponds with which floor you need to go to.
+    -The button will light up when you have successfully pressed it.
+    -If the button is already illuminated, someone has already pressed it, and you don't need to press it.
+
+-The elevator will begin to move up or down.
+    -Hold onto the closest side of the elevator so you don't fall.
+    -If there is already a person or robot on the closest side, find the next closest side.
+
+-There is a panel above the elevator door that indicates your current floor. Look at that panel.
+    -When the current floor is equal to your destination floor, it is time to exit the elevator.
+
+-To exit the elevator, head toward the door of the elevator.
+    -When the door opens, proceed straight out of the elevator.
+
+
+
+
+
+
+Come up with an example of a common task in your life that could be translated into an algorithm, and write out the steps in algorithms.txt (labeled with the name of the task).
+
+Submit the GitHub URL of your file to complete this challenge.
