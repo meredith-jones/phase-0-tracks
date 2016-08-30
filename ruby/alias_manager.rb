@@ -1,24 +1,26 @@
+#Initiate hash for real and code names:
+$name_translations = {}
+
 def fake_name_generator(name)
-#Swap the first and last name, and downcase
-last_name_first = name.split.reverse.join(' ').downcase
-#=> 'Jones Meredith'
+      #Swap the first and last name, and downcase
+      last_name_first = name.split.reverse.join(' ').downcase
 
-# Make strings of vowels and consonants  as a reference when replacing letters:
-vowels = 'aeioua'
-consonants = 'bcdfghjklmnpqrstvwxyzb'
+      # Make strings of vowels and consonants  as a reference when replacing letters:
+      vowels = 'aeioua'
+      consonants = 'bcdfghjklmnpqrstvwxyzb'
 
-#Identify vowels and switch them with the next vowel in line
-vowel_switch = last_name_first.gsub(/[aeiou]/)  do |v|
-v = vowels[vowels.index(v)+1]
-end
+      #Identify vowels and switch them with the next vowel in line
+      vowel_switch = last_name_first.gsub(/[aeiou]/)  do |v|
+      v = vowels[vowels.index(v)+1]
+      end
 
-#Identify consonants and switch them with the next consonant in line
-cons_switch = vowel_switch.gsub(/[bcdfghjklmnpqrstvwxyz]/)  do |c|
-c = consonants[consonants.index(c)+1]
-end
-
-#Output final code name:
-puts "Your code name is: #{cons_switch.capitalize}."
+      #Identify consonants and switch them with the next consonant in line
+      cons_switch = vowel_switch.gsub(/[bcdfghjklmnpqrstvwxyz]/)  do |c|
+      c = consonants[consonants.index(c)+1]
+      end
+      $name_translations[name] = cons_switch.capitalize
+      #Output final code name:
+      puts "Your code name is: #{cons_switch.capitalize}."
 end
 
 
@@ -33,6 +35,8 @@ until name == 'quit'
     name = gets.chomp
     #control flow to prevent 'quit' from generating a code name:
     if name == 'quit'
+      #Output all real and code names upon exit:
+      $name_translations.each {|name, code| puts "#{name}'s code name is #{code}."}
       break
     #invoke fake name generator method with user name:
     else
