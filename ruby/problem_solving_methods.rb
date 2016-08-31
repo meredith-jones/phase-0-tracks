@@ -21,3 +21,20 @@ index = 0
     end
   end
 end
+
+#Release 1
+
+def fibonacci(num)
+  fib_nums = [0, 1] #initializing array
+  num_index = 0 #initialize index
+  while fib_nums.length < num #loop up to num
+    fib_nums << (fib_nums[num_index] + fib_nums[num_index + 1]) #fib equation
+    num_index += 1 #increment index
+  end
+  return fib_nums
+end
+
+fibonacci(100)
+
+
+#Release 2
