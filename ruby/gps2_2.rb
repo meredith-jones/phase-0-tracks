@@ -64,10 +64,10 @@ end
 
 
 def print(grocery_list)
-    grocery_list.each {|item, qty| puts "#{item}: #{qty}" }
+    grocery_list.each {| item, qty | puts "#{item}: #{qty}" }
 end
 
-
+#TESTING:
 grocery_list = create_list("carrots apples cereal pizza")
 
 p grocery_list = add_item(grocery_list, "apples")
@@ -76,8 +76,7 @@ p grocery_list = add_item(grocery_list, "lemonade", 2)
 p grocery_list = add_item(grocery_list, "tomatoes", 3)
 p grocery_list = add_item(grocery_list, "onions", 1)
 p grocery_list = add_item(grocery_list, "ice cream", 4)
-
-
+print(grocery_list)
 
 p grocery_list =  delete_item(grocery_list, "apples")
 
