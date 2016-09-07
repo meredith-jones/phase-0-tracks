@@ -1,3 +1,7 @@
+# create lots of santas
+
+
+
 
 class Santa
 
@@ -62,6 +66,7 @@ example_genders.length.times do |i|
   santas << Santa.new(example_genders[i], example_ethnicities[i])
 end
 
+#item = myArray[rand(myarray.length)] randomly pick an item from the array ????
 #loop through and print the santas
 puts "Iterating through Santas..."
 santas.each do |santa|
