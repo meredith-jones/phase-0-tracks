@@ -73,3 +73,37 @@ santas.each do |santa|
   puts santa.tell_demographic
 end
 
+# humans = []
+
+# 10.times do
+#   santa = Santa.new
+# end
+
+# humans.each do |human|
+#   human.greeting("Glenna")
+#   human.work("Programmer")
+# end
+def create_many_santas
+end
+
+# method to randomly pick gender
+def pick_gender
+  example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
+  return example_genders[rand(example_genders.length)]
+end
+
+# method to randomly pick ethnicity
+def pick_ethnicity
+  example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+  return example_ethnicities[rand(example_ethnicities.length)]
+end
+
+# method to generate random age between 1-140
+def generate_age
+  return rand(140)
+end
+
+
+# Write a program that creates lots of Santas.
+
+# No need to store your Santas in a data structure, but your program should print out the attributes of each Santa using the instance methods that give you access to that data.
