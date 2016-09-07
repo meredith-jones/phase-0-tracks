@@ -1,18 +1,12 @@
-# create lots of santas
-
-
-
 
 class Santa
 
-  attr_reader :age, :ethnicity #getters
+  attr_accessor :gender, :ethnicity, :age #getter & setter. *Took out attr_reader because ended up using attr_accessor on all (which reads and writes).*
 
-  attr_accessor :gender #getter & setter
-
-  def initialize(gender, ethnicity)
+  def initialize(gender, ethnicity, age)
     @gender = gender
     @ethnicity = ethnicity
-    @age = 0
+    @age = age
     @reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"]
     puts "Initializing Santa instance..."
   end
@@ -21,16 +15,18 @@ class Santa
     puts "Ho, ho, ho! Haaaapy holidays!"
   end
 
-  def tell_demographic
-      puts "Hi, my gender is #{@gender} and my ethnicity is #{@ethnicity}"
+  def about
+      puts "Age: #{@age} years old"
+      puts "Ethnicity: #{@ethnicity}"
+      puts "Gender: #{@gender} "
+      puts "*********************************"
   end
 
   def eat_milk_and_cookies(cookie)
     puts "That was a good #{cookie} cookie!"
   end
 
-
-#attribute-changing methods:
+  #attribute-changing methods:
   def celebrate_birthday
     @age += 1
     puts "Santa is #{@age} now!"
@@ -44,46 +40,13 @@ class Santa
 
 end
 
-
-#DRIVER CODE
-santah = Santa.new("male", "Italian")
-santah.speak
-santah.celebrate_birthday
-santah.celebrate_birthday
-santah.get_mad_at("Prancer")
-santah.get_mad_at("Dasher")
-santah.gender=("female")
-
-
-clause = Santa.new("female", "Chinese")
-clause.eat_milk_and_cookies("Oatmeal Raisin")
-
-#create array of santa instances
-santas = []
-example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
-example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
-example_genders.length.times do |i|
-  santas << Santa.new(example_genders[i], example_ethnicities[i])
-end
-
-#item = myArray[rand(myarray.length)] randomly pick an item from the array ????
-#loop through and print the santas
-puts "Iterating through Santas..."
-santas.each do |santa|
-  puts santa.tell_demographic
-end
-
-# humans = []
-
-# 10.times do
-#   santa = Santa.new
-# end
-
-# humans.each do |human|
-#   human.greeting("Glenna")
-#   human.work("Programmer")
-# end
+# method to create many santas:
 def create_many_santas
+  100.times do
+    santa = Santa.new(pick_gender, pick_ethnicity, generate_age)
+    santa.about
+  end
+
 end
 
 # method to randomly pick gender
@@ -103,7 +66,35 @@ def generate_age
   return rand(140)
 end
 
+# call method in instantiate many santas:
+create_many_santas
 
-# Write a program that creates lots of Santas.
 
-# No need to store your Santas in a data structure, but your program should print out the attributes of each Santa using the instance methods that give you access to that data.
+
+#CREATE ARRAY OF SANTA INSTANCES from release 1:
+# santas = []
+# example_genders = ["agender", "female", "bigender", "male", "female", "gender fluid", "N/A"]
+# example_ethnicities = ["black", "Latino", "white", "Japanese-African", "prefer not to say", "Mystical Creature (unicorn)", "N/A"]
+# example_genders.length.times do |i|
+#   santas << Santa.new(example_genders[i], example_ethnicities[i])
+# end
+
+#loop through and print the santas
+# puts "Iterating through Santas..."
+# santas.each do |santa|
+#   puts santa.about
+# end
+
+
+#DRIVER CODE from previous release:
+# santah = Santa.new("male", "Italian")
+# santah.speak
+# santah.celebrate_birthday
+# santah.celebrate_birthday
+# santah.get_mad_at("Prancer")
+# santah.get_mad_at("Dasher")
+# santah.gender=("female")
+
+
+# clause = Santa.new("female", "Chinese")
+# clause.eat_milk_and_cookies("Oatmeal Raisin")
