@@ -31,6 +31,9 @@ describe Calculator do #describe block for each group of tests
     expect(calculator.divide(6,2)).to eq 3
   end
 
+  it "matches arrays" do
+
+
 end
 
 
