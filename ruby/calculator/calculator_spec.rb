@@ -26,6 +26,14 @@ describe Calculator do #describe block for each group of tests
   it "multiplies two integers" do
     expect(calculator.multiply(2,3)).to eq 6
   end
+
+  it "divide two integers" do
+    expect(calculator.divide(6,2)).to eq 3
+  end
+
+  it "matches arrays" do
+
+
 end
 
 
