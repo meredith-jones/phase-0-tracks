@@ -8,7 +8,7 @@ describe 'GuessMyWord' do
   end
 
   it "takes inputs a correct guess into the game board" do
-    expect(game.correct_guess('l'))
+    expect(game.correct_guess('l')).to include('l')
   end
 
 
