@@ -7,8 +7,9 @@ describe 'GuessMyWord' do
     expect(game.game_board).to eq " _  _  _  _  _ "
   end
 
-  it "notifies user of repeat letter guess and prompts user to guess a different letter" do
-    expect(game.repeat_guess).to end_with('guesses left.')
+  it "takes inputs a correct guess into the game board" do
+    expect(game.correct_guess('l'))
   end
+
 
 end
