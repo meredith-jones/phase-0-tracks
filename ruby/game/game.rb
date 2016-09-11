@@ -1,20 +1,20 @@
-#PSEUDOCODE:
+# Initialize method: takes a seret word inputted by player 1.
+    # Initializes an array to contain letters guessed.
+    # Initializes the number of guesses Player 2 has to guess the secret word.
 
-#Have player1 enter a word for player2 to try to guess
+# Game board method: takes secret word, and creates a "board" with a blank space for every letter of the secret word.
+    # Will return the board (the string of blank spaces)
 
-#Index for user guesses
+# Method for repeat letter guess: runs if user guesses the same letter a 2nd time.
+    # Returns a string indicating how many guesses they have left.
 
-#Method to show underscores based on how many letters there are in the word.
+# Method for correct letter guess: intakes a letter that has been identified as included in the secret word.
+    # Decrements letters guessed. Adds that letter to the array of already guessed letters.
+    # Checks for all instances of that letter, and fills board in with any instances of the letter in their respective places.
+    # Checks to see IF the board is completely filled out, and
+        # IF so, displays winning message,
+        # ELSE displays letters guessed so far and guesses remaining.
 
-#Method to handle user guesses
-# WHILE guesses <= length of secret word
-#User guesses a letter in the word.
-    # IF the guessed letter is in the word, show the blank spaces, with the letter in the correct space.
-        #User guesses +=1
-    # IF the guessed letter is not in the word, show message "No <letter> in this word."
-        #User guesses +=1
-    # IF the guessed letter has already been guessed, show message "You already guessed <letter>."
-    # IF user enters a whole word and it is the correct word, congratulatory message
-    # IF user enters a whole word and it is the incorrect word, show message "The word is not <user guess>."
-        # User guesses += 1
-    # IF user guesses index == secret word length, tell the user they lose because they've exhausted their guesses.
+# Method for incorrect letter guess: intakes a letter that has been identified as not included in the secret word.      # Adds that letter to the array of letters guessed.
+      # Decrements letters guessed.
+      # Displays a message saying the letter is not in the secret word, and how many guesses remain.
