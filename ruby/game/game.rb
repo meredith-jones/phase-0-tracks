@@ -52,45 +52,49 @@ end
 
 
 #DRIVER CODE:
+if __FILE__ == $0
+  puts "Welcome to the Word Guessing Game"
+  puts "Player 1: Enter a word!"
+  secret_word = gets.chomp
+  30.times{puts "*"}
+  game = GuessMyWord.new(secret_word)
+  game.game_board
 
-puts "Welcome to the Word Guessing Game"
-puts "Player 1: Enter a word!"
-secret_word = gets.chomp
-30.times{puts "*"}
-game = GuessMyWord.new(secret_word)
-game.game_board
+  puts "Player 2: Guess a letter. You have #{game.guesses_left} guesses!"
 
-puts "Player 2: Guess a letter. You have #{game.guesses_left} guesses!"
-
-while game.guesses_left >= 0
-      letter_guess = gets.chomp
-      if game.letters_guessed.include?(letter_guess)
+  while game.guesses_left >= 0
+        letter_guess = gets.chomp
+        if game.letters_guessed.include?(letter_guess)
+            p game.board.join
+            puts "Letters you've guessed thus far:"
+            p game.letters_guessed
+            puts "You already guessed '#{letter_guess}'. Guess another letter. You have #{game.guesses_left} guesses left."
+        elsif secret_word.include?(letter_guess)
+          game.correct_guess(letter_guess)
+          p game.board.join
+          # Checks to see IF the board is completely filled out, and
+          # IF so, displays winning message,
+          # ELSE displays letters guessed so far and guesses remaining.
+                if secret_word == game.board.join
+                    puts "That's right! It's #{secret_word}!!"
+                    puts "<3 You win! You're awesome!!! <3"
+                else
+                    puts "Excellent! You have #{game.guesses_left} guesses left."
+                    puts "Letters you've guessed thus far:"
+                    p game.letters_guessed
+                end
+        # Displays a message saying the letter is not in the secret word, and how many guesses remain.
+        else
+          game.incorrect_guess(letter_guess)
+          p game.board.join
+          puts "There is no '#{letter_guess}' in the secret word! You have #{game.guesses_left} guesses left."
           puts "Letters you've guessed thus far:"
           p game.letters_guessed
-          puts "You already guessed '#{letter_guess}'. Guess another letter. You have #{game.guesses_left} guesses left."
-      elsif secret_word.include?(letter_guess)
-        game.correct_guess(letter_guess)
-              p game.board.join
-        # Checks to see IF the board is completely filled out, and
-        # IF so, displays winning message,
-        # ELSE displays letters guessed so far and guesses remaining.
-              if secret_word == game.board.join
-                  puts "That's right! It's #{secret_word}!!"
-                  puts "<3 You win! You're awesome!!! <3"
-              else
-                  puts "Excellent! You have #{game.guesses_left} guesses left."
-                  puts "Letters you've guessed thus far:"
-                  p game.letters_guessed
-              end
-      # Displays a message saying the letter is not in the secret word, and how many guesses remain.
-      else
-        game.incorrect_guess(letter_guess)
-        puts "Letters you've guessed thus far:"
-        p game.letters_guessed
-        puts "There is no '#{letter_guess}' in the secret word! You have #{game.guesses_left} guesses left."
-      end
-    break if game.board.join == secret_word
-    break if game.guesses_left == 0 && game.board.join != secret_word
-end
 
-puts "You lose. You should work on your skills." if game.board.join != secret_word
+        end
+      break if game.board.join == secret_word
+      break if game.guesses_left == 0 && game.board.join != secret_word
+  end
+
+  puts "You lose. You should work on your skills." if game.board.join != secret_word
+end
