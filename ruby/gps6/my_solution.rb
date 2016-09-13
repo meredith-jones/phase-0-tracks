@@ -3,7 +3,7 @@
 # I worked on this challenge with: Sierra Mclawhorn.
 # We spent [1.5] hours on this challenge.
 
-# EXPLANATION OF require_relative
+# EXPLANATION OF require_relative:
 # require_relative allows you access another file within the same directory
 # require differs because the file would not be in the same directory
 
@@ -97,3 +97,8 @@ end
 
 #=======================================================================
 # Reflection Section
+# What are the differences between the two different hash syntaxes shown in the state_data file? One is a string, the other is a symbol. I'm guessing that the first uses a string because it is going to be printed, and will look better than a symbol.
+# What does require_relative do? How is it different from require? Require relative makes available code from another file within the same directory, whereas reqiure makes code available from a file -not- within the same directory.
+# What are some ways to iterate through a hash? We ended up using .each to iterate through the hash. You can also use a loop, such as a while loop.
+# When refactoring virus_effects, what stood out to you about the variables, if anything? Because they were instance variables, they were available without having to enter them as parameters.
+# What concept did you most solidify in this challenge? Probably the concept of instance variables, and how they can be passed throughout an instance. Also, we experimented a bit with require, and adding things into the file being required, and testing them to see if they work. This helped solidify the concept of require.
