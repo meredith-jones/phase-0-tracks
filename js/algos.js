@@ -63,7 +63,7 @@ function makeString(){
 }
 
 function generateStringArray(int){
-  stringArray = [];
+  var stringArray = [];
   // for the length of the entered integer, generate random strings, and add them to the array.
   for(var i = 0; i < int; i++){
     stringArray.push(makeString());
@@ -91,3 +91,12 @@ console.log(makeString());
 
 // test the full generate String Array function:
 console.log(generateStringArray(10));
+
+// feed result of string array to longest word function:
+var randomArray = generateStringArray(10);
+
+// Printing just the random array for testing:
+console.log(randomArray);
+
+// Prints the result of longest word with the randomArray as input.
+console.log(longestWord(randomArray));
