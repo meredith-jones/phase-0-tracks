@@ -15,4 +15,12 @@ function reverse(string){
   console.log(reversed.join(''));
 }
 
-reverse("hello");
+// DRIVER CODE:
+
+var test = reverse("hello");
+
+if (1 == 1) {
+  console.log(test);
+} else {
+  console.log("1 != 1");
+}
