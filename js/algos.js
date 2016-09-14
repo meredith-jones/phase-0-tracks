@@ -15,3 +15,10 @@ function longestWord(array){
   }
   return longest;
 }
+
+// DRIVER CODE:
+var array1 = ["hello", "esophagus", "okay", "mississippi", "goodbye"];
+var array2 = ["a", "abc", "ab", "abcdefg", "abcde"];
+
+console.log(longestWord(array1));
+console.log(longestWord(array2));
