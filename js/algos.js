@@ -1,4 +1,4 @@
-// Release 0:
+// Release 0 - Find the longest phrase:
 // Take an array of words or phrases
 //   set a variable that longest word will be stored in
 //   loop through the array
@@ -16,7 +16,7 @@ function longestWord(array){
   return longest;
 }
 
-// Release 1:
+// Release 1 - Find a Key-Value Match:
 // Compare 2 Objects
 // Check to see if objects share at leaset one key-value pair.
 // Create match variable with default value of false
@@ -39,6 +39,38 @@ function compareObjects(obj1, obj2){
   return match;
 }
 
+// Release 2 -- Generate Random Test Data:
+// Take in an integer
+// Build and return an array the length of the integer, with strings.
+// Strings should be 1 - 10 letters in length
+//     Need to be able to:
+//     Build a random string
+
+// To output a random number 1 - 10:
+// var number = Math.floor(Math.random() * 11);
+// console.log(number);
+
+function makeString(){
+  var string = '';
+  var choices = "abcdefghijklmnopqrstuvwxyz";
+  // generates a random number to determine string length:
+  var stringLength = Math.floor(Math.random() * 11);
+  for(var i = 0; i <= stringLength; i++){
+    // for the length of the random number, pick a random letter from the alphabet, and add it to the string.
+    string += choices.charAt(Math.floor(Math.random() * choices.length));
+  }
+  return string;
+}
+
+function generateStringArray(int){
+  stringArray = [];
+  // for the length of the entered integer, generate random strings, and add them to the array.
+  for(var i = 0; i < int; i++){
+    stringArray.push(makeString());
+  }
+  return stringArray;
+}
+
 
 // DRIVER CODE:
 // test release 0:
@@ -53,3 +85,9 @@ var object1 = {name: "Steven", age: 55, hair: "brown"};
 var object2 = {name: "Paul", hair: "brown", age: 56};
 
 console.log(compareObjects(object1, object2));
+
+// test just the function to generate a random string:
+console.log(makeString());
+
+// test the full generate String Array function:
+console.log(generateStringArray(10));
