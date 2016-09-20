@@ -1,0 +1,137 @@
+******* Release 2: Execute SQL Queries **************
+
+1. Display the information in one table:
+
+sqlite> SELECT * FROM hikes;
+
+1|Mount Ellinor|3|3300|1
+2|Mailbox Peak|5|4000|1
+3|Colchuck Lake|8|2280|1
+4|Punchbowl Falls|3|580|2
+5|Maggies Peak|4|1700|3
+6|Cataract Falls|9|2200|3
+7|Mount Diablo|12|3500|3
+8|Half Dome|16|5100|3
+9|Flatiron|6|2800|4
+
+2. Update an item that meets some condition: 
+
+sqlite> UPDATE hikes SET miles=6 WHERE name="Maggies Peak";
+
+sqlite> SELECT * FROM hikes;
+1|Mount Ellinor|3|3300|1
+2|Mailbox Peak|5|4000|1
+3|Colchuck Lake|8|2280|1
+4|Punchbowl Falls|3|580|2
+5|Maggies Peak|6|1700|3
+6|Cataract Falls|9|2200|3
+7|Mount Diablo|12|3500|3
+8|Half Dome|16|5100|3
+9|Flatiron|6|2800|4
+
+3. Display the information in both tables using one query:
+
+sqlite> SELECT * FROM hikes, states WHERE hikes.state_id = states.id;
+
+1|Mount Ellinor|3|3300|1|1|Washington
+2|Mailbox Peak|5|4000|1|1|Washington
+3|Colchuck Lake|8|2280|1|1|Washington
+4|Punchbowl Falls|3|580|2|2|Oregon
+5|Maggies Peak|6|1700|3|3|California
+6|Cataract Falls|9|2200|3|3|California
+7|Mount Diablo|12|3500|3|3|California
+8|Half Dome|16|5100|3|3|California
+9|Flatiron|6|2800|4|4|Arizona
+
+4. Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query:
+
+sqlite> SELECT hikes.name, hikes.miles, states.name FROM hikes JOIN states ON hikes.state_id = states.id;
+
+Mount Ellinor|3|Washington
+Mailbox Peak|5|Washington
+Colchuck Lake|8|Washington
+Punchbowl Falls|3|Oregon
+Maggies Peak|6|California
+Cataract Falls|9|California
+Mount Diablo|12|California
+Half Dome|16|California
+Flatiron|6|Arizona
+
+5. Delete an item that meets some condition: 
+
+sqlite> DELETE FROM hikes WHERE elevation < 1000;
+
+sqlite> SELECT * FROM hikes;
+1|Mount Ellinor|3|3300|1
+2|Mailbox Peak|5|4000|1
+3|Colchuck Lake|8|2280|1
+5|Maggies Peak|6|1700|3
+6|Cataract Falls|9|2200|3
+7|Mount Diablo|12|3500|3
+8|Half Dome|16|5100|3
+9|Flatiron|6|2800|4
+ 
+******* Release 3: Research on Your Own **************
+
+This link contains Venn Diagrams demonstrating different types of joins:
+
+https://blog.jooq.org/2015/10/06/you-probably-dont-use-sql-intersect-or-except-often-enough/
+
+-Here’s a query using Inner Join, which, as it turns out, is the same as join:
+
+sqlite> SELECT hikes.name, hikes.miles, states.name FROM hikes
+   ...> INNER JOIN states
+   ...> ON hikes.state_id = states.id;
+
+Mount Ellinor|3|Washington
+Mailbox Peak|5|Washington
+Colchuck Lake|8|Washington
+Maggies Peak|6|California
+Cataract Falls|9|California
+Mount Diablo|12|California
+Half Dome|16|California
+Flatiron|6|Arizona
+
+-I tried to use a Right Join and a Right Outer Join, and received an error stating those joins are not supported:
+
+sqlite> SELECT hikes.name, states.name FROM hikes
+   ...> RIGHT OUTER JOIN states
+   ...> ON hikes.state_id = states.id;
+Error: RIGHT and FULL OUTER JOINs are not currently supported
+sqlite> 
+
+-It appears that Left Joins are supported, although it produces similar data to the inner join, due to the nature of my two tables:
+
+sqlite> SELECT hikes.name, states.name FROM hikes
+   ...> LEFT JOIN states
+   ...> ON hikes.state_id = states.id;
+
+Mount Ellinor|Washington
+Mailbox Peak|Washington
+Colchuck Lake|Washington
+Maggies Peak|California
+Cataract Falls|California
+Mount Diablo|California
+Half Dome|California
+Flatiron|Arizona
+sqlite> 
+
+- I wanted to only select Washington hikes, so I tried this:
+
+sqlite> SELECT * FROM hikes WHERE state_id=1;
+
+1|Mount Ellinor|3|3300|1
+2|Mailbox Peak|5|4000|1
+3|Colchuck Lake|8|2280|1
+
+-But what I really want is for “Washington” to display instead of the State_id. After some experimenting, I came up with this: 
+
+sqlite> SELECT hikes.name, hikes.miles, states.name FROM hikes
+   ...> JOIN states
+   ...> ON hikes.state_id = states.id
+   ...> WHERE states.name="Washington";
+
+Mount Ellinor|3|Washington
+Mailbox Peak|5|Washington
+Colchuck Lake|8|Washington
+
