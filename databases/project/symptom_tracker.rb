@@ -32,8 +32,13 @@ def add_symptom(db, symptom, date, time_of_day, severity)
   $db.execute("INSERT INTO symptoms (symptom, date, time_of_day, severity) VALUES (?, ?, ?, ?)", [symptom, date, time_of_day, severity])
 end
 
-def view_severity_based_symptoms
-end
+# def view_severity_based_symptoms(severity)
+#   severity_symptoms = $db.execute('SELECT * FROM symptoms WHERE severity="#{severity}";')
+#   puts "#{severity} symptoms:"
+#   severity_symptoms.each do | symptom |
+#     puts
+#   end
+# end
 
 def view_all_symptoms
   symptoms = $db.execute("SELECT * FROM symptoms;")
@@ -47,7 +52,16 @@ def view_all_symptoms
     end
 end
 
-def view_symptoms_time_of_day
+def view_symptoms_time_of_day(time)
+  time_symptoms = $db.execute( <<-SQL
+    SELECT * FROM symptoms
+    WHERE time_of_day='time';
+    SQL
+    )
+  puts "Symptoms that occur in the #{time}:"
+  time_symptoms.each do | symptom |
+      puts "#{symptoms['symptom']}"
+  end
 end
 
 def view_symptoms_specific_date
@@ -56,11 +70,11 @@ end
 def view_same_symptoms
 end
 
-def update_last_symptom
-end
+# def update_last_symptom
+# end
 
-def delete_last_entry
-end
+# def delete_last_entry
+# end
 
 # DRIVER CODE:
 
@@ -74,6 +88,7 @@ def add
   while input != 'done'
     puts "Please enter a symptom."
     symptom = gets.chomp
+
     current_time = DateTime.now
     date = current_time.strftime "%m/%d/%Y"
 
@@ -87,6 +102,19 @@ def add
 
     puts "Please type 'new' to enter a new symptom, or type 'done' if you're done entering symptoms."
     input = gets.chomp
+  end
+end
+
+# View symptoms:
+def view
+  puts "Do you want to view ALL symptoms, or view symptoms based on TIME of day (type 'all', or 'time'):"
+  input = gets.chomp
+  if input == 'all'
+    view_all_symptoms
+  elsif input == 'time'
+    puts "Which time of day would you like to view symptoms for? (type 'morning', 'afternoon', or 'evening')"
+    time = gets.chomp
+    view_symptoms_time_of_day(time)
   end
 end
 # Different actions can be:
@@ -104,14 +132,13 @@ action = gets.chomp
 if action == 'add'
   add
 elsif action == 'view'
-  view_all_symptoms
+  view
 elsif action == 'exit'
   puts "Thank you for using Symptom Log."
 else
   puts "I didn't understand that."
 end
 
-# View symptoms:
 
 # Update last symptom:
 
