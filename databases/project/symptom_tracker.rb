@@ -23,7 +23,7 @@ db.execute(create_table_cmd)
 
 
 # add a test symptom
-db.execute("INSERT INTO symptoms (symptom, date, time_of_day, severity) VALUES ('fatigue', '9-20-16', 'night', 7)")
+# db.execute("INSERT INTO symptoms (symptom, date, time_of_day, severity) VALUES ('fatigue', '9-20-16', 'night', 7)")
 
 
 
