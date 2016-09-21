@@ -54,14 +54,16 @@ end
 
 def view_symptoms_time_of_day(time)
   time_symptoms = $db.execute( <<-SQL
-    SELECT * FROM symptoms
-    WHERE time_of_day='time';
+    SELECT symptom FROM symptoms
+    WHERE time_of_day="#{time}";
     SQL
     )
+  puts "*****************************************"
   puts "Symptoms that occur in the #{time}:"
   time_symptoms.each do | symptom |
-      puts "#{symptoms['symptom']}"
+      puts "#{symptom['symptom']}"
   end
+  puts "*****************************************"
 end
 
 def view_symptoms_specific_date
