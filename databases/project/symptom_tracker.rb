@@ -1,6 +1,7 @@
 
 # require gem
 require 'sqlite3'
+require 'date'
 
 # create SQLite3 database
 db = SQLite3::Database.new("symptoms.db")
@@ -27,18 +28,27 @@ db.execute("INSERT INTO symptoms (symptom, date, time_of_day, severity) VALUES (
 
 
 
+def add_symptom(db, symptom, date, time_of_day, severity)
+  db.execute("INSERT INTO symptoms (symptom, date, time_of_day, severity) VALUES (?, ?, ?, ?)", [symptom, date, time_of_day, severity])
+end
 
+# DRIVER CODE:
 
+puts "Please enter a symptom:"
+symptom = gets.chomp
 
+current_time = DateTime.now
+date = current_time.strftime "%m/%d/%Y"
 
+puts "Please enter time of day (morning/afternoon/evening):"
+time_of_day = gets.chomp
 
+puts "Please enter severity level (1-10):"
+severity = gets.chomp.to_i
 
-
+add_symptom(db, symptom, date, time_of_day, severity)
 
 #Examples from kitten program:
-# def create_kitten(db, name, age)
-#   db.execute("INSERT INTO kittens (name, age) VALUES (?, ?)", [name, age])
-# end
 
 # 10.times do
 #   create_kitten(db, Faker::Name.name, 0)
