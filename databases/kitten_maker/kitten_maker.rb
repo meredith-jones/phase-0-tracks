@@ -1,12 +1,14 @@
 # OPERATION KITTEN EXPLOSION!
 
-# talk about Object Relational Mapping (ORM)
+# talk about Object Relational Mapping (ORM) : how do we take relational data (like the data we've been working with) and use it in an object-oriented language? We want to work with the data from within a scripting program. Also known as object relational management.
 
 # require gems
+# a gem is prewritten ruby. Can be used after installed. The sqlite gem does the relational mapping for us. The faker gem lets you create fake data.
 require 'sqlite3'
 require 'faker'
 
 # create SQLite3 database
+# this can take a block if you want it to
 db = SQLite3::Database.new("kittens.db")
 db.results_as_hash = true
 
@@ -26,7 +28,7 @@ db.execute(create_table_cmd)
 # db.execute("INSERT INTO kittens (name, age) VALUES ('Bob', 10)")
 
 # add LOOOOTS of kittens!
-# so. many. kittens. 
+# so. many. kittens.
 #KittenExplosion
 def create_kitten(db, name, age)
   db.execute("INSERT INTO kittens (name, age) VALUES (?, ?)", [name, age])
