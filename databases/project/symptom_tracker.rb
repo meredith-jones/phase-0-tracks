@@ -84,11 +84,23 @@ def view_symptoms_specific_date(day)
   puts "_____________________________"
 end
 
-def view_same_symptoms
+def view_same_symptoms(name)
+    same_symptoms = $db.execute( <<-SQL
+    SELECT * FROM symptoms
+    WHERE symptom="#{name}"
+    ORDER BY severity;
+    SQL
+    )
+  puts "____________________________________________"
+  puts "Here's info regarding occurances of #{name}:"
+  same_symptoms.each do | symptom |
+      puts "Severity level: #{symptom['severity']}, occurred #{symptom['date']} #{symptom['time_of_day']}."
+  end
+  puts "____________________________________________"
 end
 
-# def update_last_symptom
-# end
+def update_last_symptom
+end
 
 # def delete_last_entry
 # end
@@ -129,6 +141,7 @@ def view
   puts "view symptoms based on TIME of day (type 'time')"
   puts "view all symptoms from a certain DAY (type 'day')"
   puts "view symptoms based on SEVERITY (type 'severity')"
+  puts "view info on all of the SAME symptoms (type 'same')"
   input = gets.chomp
   if input == 'all'
     view_all_symptoms
@@ -150,10 +163,14 @@ def view
     elsif severity == 'severe'
       view_severity_based_symptoms(severity, 7, 10)
     end
+  elsif input == 'same'
+    puts "Which symptom would you like to view info on? (type the symptom)"
+    name = gets.chomp
+    view_same_symptoms(name)
   end
 end
 # Different actions can be:
-# Read: view all symptoms, view severe symptoms, view symptoms based on time of day, view all same symptoms, view symptoms from a certain date
+# Read: view all same symptoms
 # Update: an entry - change the last thing you just added,
 # Delete: an entry - remove the most recent entry
 puts "Welcome to your Symptom Log!"
@@ -165,6 +182,8 @@ until action == 'exit'
     puts "Would you like to:"
     puts "--> ADD symptoms (type 'add')"
     puts "--> VIEW symptoms (type 'view')"
+    puts "--> EDIT symptoms (type 'edit')"
+    puts "--> DELETE symptoms (type 'delete')"
     puts "--> EXIT program (type 'exit')"
     puts "**************************************"
 
@@ -184,7 +203,6 @@ end
 
 # Delete last symptom:
 
-#Examples from kitten program:
 
 # 10.times do
 #   create_kitten(db, Faker::Name.name, 0)
