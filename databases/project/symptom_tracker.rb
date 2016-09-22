@@ -59,14 +59,15 @@ end
 def view_severity_based_symptoms(severity, number, number2)
   severity_symptoms = $db.execute( <<-SQL
     SELECT * FROM symptoms
-    WHERE severity >= "#{number}.to_i"
-    AND severity <= "#{number2}.to_i";
+    WHERE severity >= "#{number}"
+    AND severity <= "#{number2}";
     SQL
     )
-  puts "#{severity} symptoms:"
-  severity_symptoms.each do | symptom |
-      puts "#{symptom['symptom']}: #{symptom['severity']}"
-  end
+  puts "_____________________________"
+  puts "Here are the symptoms you've listed as #{severity}:"
+      severity_symptoms.each do | symptom |
+          puts "#{symptom['symptom']}: #{symptom['severity']}"
+      end
 end
 
 def view_symptoms_specific_date(day)
