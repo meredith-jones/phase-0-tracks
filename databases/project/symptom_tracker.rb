@@ -56,13 +56,18 @@ def view_symptoms_time_of_day(time)
   puts "_____________________________"
 end
 
-# def view_severity_based_symptoms(severity)
-#   severity_symptoms = $db.execute('SELECT * FROM symptoms WHERE severity="#{severity}";')
-#   puts "#{severity} symptoms:"
-#   severity_symptoms.each do | symptom |
-#     puts
-#   end
-# end
+def view_severity_based_symptoms(severity, number, number2)
+  severity_symptoms = $db.execute( <<-SQL
+    SELECT * FROM symptoms
+    WHERE severity >= "#{number}.to_i"
+    AND severity <= "#{number2}.to_i";
+    SQL
+    )
+  puts "#{severity} symptoms:"
+  severity_symptoms.each do | symptom |
+      puts "#{symptom['symptom']}: #{symptom['severity']}"
+  end
+end
 
 def view_symptoms_specific_date(day)
     day_symptoms = $db.execute( <<-SQL
@@ -122,6 +127,7 @@ def view
   puts "view ALL info on all symptoms (type 'all')"
   puts "view symptoms based on TIME of day (type 'time')"
   puts "view all symptoms from a certain DAY (type 'day')"
+  puts "view symptoms based on SEVERITY (type 'severity')"
   input = gets.chomp
   if input == 'all'
     view_all_symptoms
@@ -133,15 +139,24 @@ def view
     puts "For which day would you like information? (type a date in the format 'DD/MM/YYYY')"
     day = gets.chomp
     view_symptoms_specific_date(day)
+  elsif input == 'severity'
+    puts "Would you like to view symptoms you've listed as MILD, MODERATE, or SEVERE? (Type 'mild', 'moderate', or 'severe')"
+    severity = gets.chomp
+    if severity == 'mild'
+      view_severity_based_symptoms(severity, 0, 3)
+    elsif severity == 'moderate'
+      view_severity_based_symptoms(severity, 4, 6)
+    elsif severity == 'severe'
+      view_severity_based_symptoms(severity, 7, 10)
+    end
   end
 end
 # Different actions can be:
-# Create: enter a symptom,
 # Read: view all symptoms, view severe symptoms, view symptoms based on time of day, view all same symptoms, view symptoms from a certain date
 # Update: an entry - change the last thing you just added,
 # Delete: an entry - remove the most recent entry
 puts "Welcome to your Symptom Log!"
-# Should main menu be here, as in exiting another function leads back here?
+
 action = ''
 until action == 'exit'
     puts "**************************************"
@@ -173,3 +188,8 @@ end
 # 10.times do
 #   create_kitten(db, Faker::Name.name, 0)
 # end
+
+#test print:
+# test = $db.execute("SELECT * FROM symptoms;")
+# puts test
+# Prints all the data in hashes
