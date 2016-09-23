@@ -1,5 +1,4 @@
-
-# require gem
+# require gems
 require 'sqlite3'
 require 'date'
 
@@ -7,7 +6,7 @@ require 'date'
 $db = SQLite3::Database.new("symptoms.db")
 $db.results_as_hash = true
 
-
+# Creates a symptoms table (if it's not there already)
 create_table_cmd = <<-SQL
   CREATE TABLE IF NOT EXISTS symptoms(
     id INTEGER PRIMARY KEY,
@@ -18,30 +17,24 @@ create_table_cmd = <<-SQL
   )
 SQL
 
-# create a symptoms table (if it's not there already)
+# Invoke above function
 $db.execute(create_table_cmd)
 
-
-# add a test symptom
-# db.execute("INSERT INTO symptoms (symptom, date, time_of_day, severity) VALUES ('fatigue', '9-20-16', 'night', 7)")
-
-
+# Adds a symptom to the database.
 def add_symptom(db, symptom, date, time_of_day, severity)
   $db.execute("INSERT INTO symptoms (symptom, date, time_of_day, severity) VALUES (?, ?, ?, ?)", [symptom, date, time_of_day, severity])
 end
 
+# Displays all symptoms in database.
 def view_all_symptoms
   symptoms = $db.execute("SELECT * FROM symptoms;")
     symptoms.each do | symptom |
-      puts "#{symptom['id']}."
-      puts "Symptom: #{symptom['symptom']}"
-      puts "Date: #{symptom['date']}"
-      puts "Time of day: #{symptom['time_of_day']}"
-      puts "Severity: #{symptom['severity']}"
-      puts "________________________________"
+      puts "#{symptom['id']}. #{symptom['symptom']}, Severity: #{symptom['severity']}, #{symptom['date']} in the #{symptom['time_of_day']}"
+      puts " "
     end
 end
 
+# Takes user input from driver code, and displays info on symptoms that are occurred at a specified time of day.
 def view_symptoms_time_of_day(time)
   time_symptoms = $db.execute( <<-SQL
     SELECT symptom FROM symptoms
@@ -56,6 +49,7 @@ def view_symptoms_time_of_day(time)
   puts "_____________________________"
 end
 
+# Takes user input from driver code, and displays info on symptoms that are of a specified severity level.
 def view_severity_based_symptoms(severity, number, number2)
   severity_symptoms = $db.execute( <<-SQL
     SELECT * FROM symptoms
@@ -70,6 +64,7 @@ def view_severity_based_symptoms(severity, number, number2)
       end
 end
 
+# Takes user input from driver code, and displays info on symptoms that occurred on a specific date.
 def view_symptoms_specific_date(day)
     day_symptoms = $db.execute( <<-SQL
     SELECT * FROM symptoms
@@ -84,6 +79,7 @@ def view_symptoms_specific_date(day)
   puts "_____________________________"
 end
 
+# Takes user input from driver code, and displays info on symptoms with the same name.
 def view_same_symptoms(name)
     same_symptoms = $db.execute( <<-SQL
     SELECT * FROM symptoms
@@ -99,15 +95,29 @@ def view_same_symptoms(name)
   puts "____________________________________________"
 end
 
-def update_last_symptom
+# Takes user input from driver code, and changes the database based on id, substituting the user's new value.
+def edit_symptom(db, id, category, value)
+  $db.execute( <<-SQL
+    UPDATE symptoms
+    SET "#{category}"="#{value}"
+    WHERE id="#{id}";
+    SQL
+    )
 end
 
-# def delete_last_entry
-# end
+# Takes user input of id, and deletes entry with corresponding primary key in database:
+def delete_symptom(db, id)
+    $db.execute( <<-SQL
+    DELETE FROM symptoms
+    WHERE id="#{id}";
+    SQL
+    )
+end
 
-# DRIVER CODE:
-
-# Maybe I can wrap this driver code in a loop that lets users choose actions or exit (exit will stop the loop)
+#***********************************************************
+# DRIVER CODE BELOW:
+#***********************************************************
+# GENERAL ACTION SECTION, TAKING MORE USER INPUT
 
 # Add symptom:
 def add
@@ -137,11 +147,11 @@ end
 # View symptoms:
 def view
   puts "Do you want to:"
-  puts "view ALL info on all symptoms (type 'all')"
-  puts "view symptoms based on TIME of day (type 'time')"
-  puts "view all symptoms from a certain DAY (type 'day')"
-  puts "view symptoms based on SEVERITY (type 'severity')"
-  puts "view info on all of the SAME symptoms (type 'same')"
+  puts "--> view ALL info on all symptoms (type 'all')"
+  puts "--> view symptoms based on TIME of day (type 'time')"
+  puts "--> view all symptoms from a certain DAY (type 'day')"
+  puts "--> view symptoms based on SEVERITY (type 'severity')"
+  puts "--> view info on all of the SAME symptoms (type 'same')"
   input = gets.chomp
   if input == 'all'
     view_all_symptoms
@@ -169,10 +179,39 @@ def view
     view_same_symptoms(name)
   end
 end
-# Different actions can be:
-# Read: view all same symptoms
-# Update: an entry - change the last thing you just added,
-# Delete: an entry - remove the most recent entry
+
+# Update symptom
+def edit
+  puts "Here's a list of all the symptoms. Type the id number of the symptom you'd like to edit."
+    symptoms = $db.execute("SELECT * FROM symptoms;")
+    symptoms.each do | symptom |
+      puts "ID #{symptom['id']}: #{symptom['symptom']}, #{symptom['date']}, #{symptom['time_of_day']}, Severity: #{symptom['severity']}"
+    end
+  edit_id = gets.chomp.to_i
+  puts "Do you want to"
+  puts "--> update the SYMPTOM (type 'symptom')"
+  puts "--> update the TIME OF DAY (type 'time')"
+  puts "--> update the SEVERITY (type 'severity')"
+  update_category = gets.chomp
+  puts "Please type in the new #{update_category}:"
+  update_value = gets.chomp
+  edit_symptom($db, edit_id, update_category, update_value)
+end
+
+# Delete Symptom
+def delete
+  puts "Here's a list of all the symptoms. Type the id number of the symptom you'd like to delete."
+    symptoms = $db.execute("SELECT * FROM symptoms;")
+    symptoms.each do | symptom |
+      puts "ID #{symptom['id']}: #{symptom['symptom']}, #{symptom['date']}, #{symptom['time_of_day']}, Severity: #{symptom['severity']}"
+    end
+  delete_id = gets.chomp.to_i
+  delete_symptom($db, delete_id)
+end
+
+#***********************************************************
+#MAIN MENU SECTION
+
 puts "Welcome to your Symptom Log!"
 
 action = ''
@@ -192,6 +231,10 @@ until action == 'exit'
       add
     elsif action == 'view'
       view
+    elsif action == 'edit'
+      edit
+    elsif action == 'delete'
+      delete
     elsif action == 'exit'
       puts "Thank you for using Symptom Log. Goodbye!"
     else
@@ -199,16 +242,10 @@ until action == 'exit'
     end
 end
 
-# Update last symptom:
-
-# Delete last symptom:
-
-
-# 10.times do
-#   create_kitten(db, Faker::Name.name, 0)
-# end
-
 #test print:
 # test = $db.execute("SELECT * FROM symptoms;")
 # puts test
 # Prints all the data in hashes
+
+# add a test symptom
+# db.execute("INSERT INTO symptoms (symptom, date, time_of_day, severity) VALUES ('fatigue', '9-20-16', 'night', 7)")
