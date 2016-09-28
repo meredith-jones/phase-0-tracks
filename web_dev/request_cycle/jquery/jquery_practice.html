@@ -1,58 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>WA hikes</title>
-  </head>
-  <body>
-    <h1>MJ's top 5 WA hikes!!!</h1>
-    <h2>...in no particular order...</h2>
-      <p></p>
-        <ol>
-          <li><strong>Spray Park</strong>, Mount Rainier National Park
-            <ul>
-              <li>On a clear day, this hike features epic views of the Mt. Rainier</li>
-              <li>The wildflowers are to die for</li>
-              <li>There are a couple really pretty stream crossings</li>
-              <li>You can take a quick side path to Spray Falls, which is also incredible!</li>
-            </ul>
-          </li><br>
+<head>
+  <title>jQuery practice</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Amatica+SC|Shadows+Into+Light" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+  </script>
 
-          <li><strong>Hoh River Trail</strong>, Olympic National Park
-              <ul>
-                <li>This is the PNW's very own rainforest</li>
-                <li>It is incredibly green and the air is very clean</li>
-                <li>You're bound to see cool critters and interesting plants</li>
-                <li>It is along a river and features stream crossings and waterfalls.</li>
-            </ul>
-          </li><br>
+  <script>
+  $(document).ready(function(){
+    $("button").click(function(){
+        $("li").fadeToggle("slow");
+    });
+    $("#subtitle").hover(function(){
+      $(this).css("color", "red");
+    });
+  });
+  </script>
+</head>
+<body>
+  <header>
+  <h1 id="maintitle">jQuery practice!</h1>
+  </header>
+  <p>Hover over the below heading and it will turn red:</p>
+  <h2 id="subtitle">This page shows a few examples of how jQuery is used.</h2>
 
-          <li><strong>Mt. Ellinor</strong>, Olympic Peninsula
-              <ul>
-                <li>Short and sweet hike with amazing 360 views! Very steep though-- be careful.</li>
-                <li>You might see mountain goats!</li>
-                <li>On a clear day, you can see Mt. Rainier.</li>
-                <li>It features a variety of terrain.</li>
-            </ul>
-          </li><br>
+  <article id="resources">
+    <h3>A few resources I used are:</h3>
+    <button>Click to hide or show resources!</button>
+    <ul>
+      <li><a href="http://www.w3schools.com/jquery/">w3schools</a></li>
+      <li><a href="https://learn.jquery.com/">jquery.com</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/JQuery">wikipedia</a></li>
+      <li><a href="https://frontendmasters.com/learningjquery/femasters/jQuery-1.6-Cheatsheet.pdf">front end masters</a></li>
+    </ul>
+  </article>
 
-          <li><strong>Blanca Lake</strong>, North Cascades
-            <ul>
-              <li>A bit of a difficult hike, but the views along the way are gorgeous.</li>
-              <li>Nothing compares to the view of the lake itself--it's color is unlike any other.</li>
-              <li>You can jump in the lake! It's very ... refreshing.</li>
-            </ul>
-          </li><br>
-
-          <li><strong>Second Beach</strong>, Olympic Peninsula
-            <ul>
-              <li>Quick and easy hike with a great reward--the views at the beach are awesome!</li>
-              <li>Very interesting rock formations on the coast</li>
-              <li>Really nice forest trail, well maintained.</li>
-              <li>You'll see very interesting plant life!</li>
-            </ul>
-          </li><br>
-        </ol>
-
-        <p><em>For more info on these and other Washington hikes, visit <a href="http://www.wta.org/">wta.org.</a> </em></p>
-  </body>
+</body>
 </html>

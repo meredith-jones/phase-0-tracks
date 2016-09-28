@@ -1,4 +1,11 @@
 body {
-  color: green;
-  background-color: blue;
+  color: blue;
+  background-color: yellow;
+  font-family: 'Shadows Into Light', cursive;
+  padding: 20px;
+}
+
+ul {
+  background-color: orange;
+  width: 150px;
 }
