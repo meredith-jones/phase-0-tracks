@@ -83,3 +83,14 @@ $("p").click(function(){
 * Examples of events are 'click', 'mouseenter,' 'hover', 'focus'
 * Can also 'hide', 'show', 'toggle', 'fade', 'slide' elements
 * 'Animate' method lets you custom animate your selector.
+
+## The Re-hash:
+* I found that time boxing on this is pretty tough!
+* It's hard to learn something without learning it thoroughly.
+* After coming to terms with the fact that I wasn't going to learn it thoroughly, I time boxed and completed the assignment more efficiently.
+* I found what worked for me was:
+  - Get a basic overview
+  - Decide which particular features I want to implement
+  - Learn how to implement first feature
+  - Implement that one feature
+  - Learn how to implement the next feature
