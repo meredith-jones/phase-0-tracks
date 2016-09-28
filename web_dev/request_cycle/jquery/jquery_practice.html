@@ -9,11 +9,31 @@
 
   <script>
   $(document).ready(function(){
-    $("button").click(function(){
-        $("li").fadeToggle("slow");
+    $("#resourcebutton").click(function(){
+        $("li").slideToggle("slow");
     });
     $("#subtitle").hover(function(){
       $(this).css("color", "red");
+    });
+    $("#up").click(function(){
+      $("#dogpic").animate({
+        bottom: "+=100px"
+      });
+    });
+    $("#right").click(function(){
+      $("#dogpic").animate({
+        left: "+=100px"
+      });
+    });
+    $("#left").click(function(){
+      $("#dogpic").animate({
+        right: "+=100px"
+      });
+    });
+    $("#down").click(function(){
+      $("#dogpic").animate({
+        top: "+=100px"
+      });
     });
   });
   </script>
@@ -27,7 +47,7 @@
 
   <article id="resources">
     <h3>A few resources I used are:</h3>
-    <button>Click to hide or show resources!</button>
+    <button id="resourcebutton">Click to hide or show resources!</button>
     <ul>
       <li><a href="http://www.w3schools.com/jquery/">w3schools</a></li>
       <li><a href="https://learn.jquery.com/">jquery.com</a></li>
@@ -35,6 +55,16 @@
       <li><a href="https://frontendmasters.com/learningjquery/femasters/jQuery-1.6-Cheatsheet.pdf">front end masters</a></li>
     </ul>
   </article>
+<div id="movedog">
+  <p>The puppy needs exercise! Click a button to move the pup around!</p>
+<button id="up">UP!</button>
+<button id="right">RIGHT!</button>
+<button id="left">LEFT!</button>
+<button id="down">DOWN!</button>
+</div>
+<div id="dogpic">
+  <img id="pic" src="dog.jpg" alt="dog">
+</div>
 
 </body>
 </html>
