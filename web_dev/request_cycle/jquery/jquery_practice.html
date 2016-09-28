@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery practice</title>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Amatica+SC|Shadows+Into+Light" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+  </script>
+
+  <script>
+  $(document).ready(function(){
+    $("#resourcebutton").click(function(){
+        $("li").slideToggle("slow");
+    });
+    $("#subtitle").hover(function(){
+      $(this).css("color", "red");
+    });
+    $("#up").click(function(){
+      $("#dogpic").animate({
+        bottom: "+=100px"
+      });
+    });
+    $("#right").click(function(){
+      $("#dogpic").animate({
+        left: "+=100px"
+      });
+    });
+    $("#left").click(function(){
+      $("#dogpic").animate({
+        right: "+=100px"
+      });
+    });
+    $("#down").click(function(){
+      $("#dogpic").animate({
+        top: "+=100px"
+      });
+    });
+  });
+  </script>
+</head>
+<body>
+  <header>
+  <h1 id="maintitle">jQuery practice!</h1>
+  </header>
+  <p>Hover over the below heading and it will turn red:</p>
+  <h2 id="subtitle">This page shows a few examples of how jQuery is used.</h2>
+
+  <article id="resources">
+    <h3>A few resources I used are:</h3>
+    <button id="resourcebutton">Click to hide or show resources!</button>
+    <ul>
+      <li><a href="http://www.w3schools.com/jquery/">w3schools</a></li>
+      <li><a href="https://learn.jquery.com/">jquery.com</a></li>
+      <li><a href="https://en.wikipedia.org/wiki/JQuery">wikipedia</a></li>
+      <li><a href="https://frontendmasters.com/learningjquery/femasters/jQuery-1.6-Cheatsheet.pdf">front end masters</a></li>
+    </ul>
+  </article>
+<div id="movedog">
+  <p>The puppy needs exercise! Click a button to move the pup around!</p>
+<button id="up">UP!</button>
+<button id="right">RIGHT!</button>
+<button id="left">LEFT!</button>
+<button id="down">DOWN!</button>
+</div>
+<div id="dogpic">
+  <img id="pic" src="dog.jpg" alt="dog">
+</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+html {
+    text-align: center;
+}
+
+body {
+  color: blue;
+  background-color: yellow;
+  font-family: 'Shadows Into Light', cursive;
+  padding: 20px;
+}
+
+ul {
+  background-color: orange;
+  width: 150px;
+  border-radius: 15px;
+  margin-left: 325px;
+}
+
+#pic {
+  height: 200px;
+  width: 200px;
+  border-radius: 15px;
+}
+
+#dogpic {
+  position: absolute;
+}
