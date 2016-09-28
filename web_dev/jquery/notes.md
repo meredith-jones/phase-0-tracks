@@ -2,26 +2,30 @@
 * Find a couple good websites for learning
 * Take 30 minutes to read or watch a tutorial, and try to implement something small.
 * Continue watching or reading, 30 minutes at a time, while taking notes. Break when you can find something to implement.
-* Can I possibly implement the jquery on my personal hiking website?
 
-* Resources that look good:
+## Resources that look good:
   - http://www.w3schools.com/jquery/
   - https://learn.jquery.com/
   - https://en.wikipedia.org/wiki/JQuery
   - https://frontendmasters.com/learningjquery/femasters/jQuery-1.6-Cheatsheet.pdf
   - http://makeawebsitehub.com/jquery-mega-cheat-sheet/
 
+## Info about jQuery:
 * jQuery is a javascript library
 * Simplifies web development tasks, using concise, easy to read syntax
 * Uses CSS syntax for common operations
 * Designed to work on sets of elements
 * Concise code via statement chaining
 
+
+## Document ready function:
+`
   $("document").ready(function(){
     $("#content").append("<p>The page just loaded.</p>")
   })
+`
 
-  * In the above case:
+* In the above case:
     - we are calling the jQuery library, which is referenced by the $
     - using the "document" keyword, which means we are going to perform an operation on the page itself
     - The 'ready' function sets up an event listener for when the dom structure of the page is ready to be operated on.
@@ -59,33 +63,34 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 ```
+
 ## Basic jQuery syntax:
 ```
 $(selector).action()
 ```
+
 * Selectors are used to 'find' HTML elements based on their name, id, classes, etc. They start with $()
 * More info on selectors at http://www.w3schools.com/jquery/jquery_selectors.asp
 * Events: all the user's actions that a web page can respond to
 * Looks like:
+
 ```
 $("p").click(function(){
   // action goes here!!
 });
 ```
+
 * Examples of events are 'click', 'mouseenter,' 'hover', 'focus'
 * Can also 'hide', 'show', 'toggle', 'fade', 'slide' elements
 * 'Animate' method lets you custom animate your selector.
 
-## Document Ready Event:
-
-* Keeps jQuery code from running before the document is finished loading.
-
-* Looks like:
-
-```
-$(document).ready(function(){
-
-   // jQuery methods go here...
-
-});
-```
+## The Re-hash:
+* I found that time boxing on this is pretty tough!
+* It's hard to learn something without learning it thoroughly.
+* After coming to terms with the fact that I wasn't going to learn it thoroughly, I time boxed and completed the assignment more efficiently.
+* I found what worked for me was:
+  - Get a basic overview
+  - Decide which particular features I want to implement
+  - Learn how to implement first feature
+  - Implement that one feature
+  - Learn how to implement the next feature
