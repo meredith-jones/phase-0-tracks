@@ -64,3 +64,39 @@ get '/students/:id' do
   student = db.execute("SELECT * FROM students WHERE id=?", [params[:id]])[0]
   student.to_s
 end
+
+# Relsease 0: Add Routes:
+
+# 1. /contact route:
+get '/contact/:address' do
+  "<h2>Address: #{params[:address]} </h2>"
+end
+
+# 2. /great_job route
+get '/great_job' do
+  name = params[:name]
+  if name
+    "<h1>Good Job, #{name}!</h1>"
+  else
+    "<h1>Good Job.</h1>"
+  end
+end
+
+# 3. /add/:num1/:num2
+get '/add/:num1/:num2' do
+  num1 = params[:num1]
+  num2 = params[:num2]
+  total = num1.to_i + num2.to_i
+  "#{num1} + #{num2} = #{total}"
+end
+
+# 4. Search database and return something
+get '/students/age/:agelower/:ageupper' do
+  students = db.execute("SELECT * FROM students WHERE age>? AND age<?", [params[:agelower], params[:ageupper]])
+  results = ""
+    students.each do |student|
+    results << "Name: #{student['name']}<br>"
+    results << "Age: #{student['age']}<br><br>"
+  end
+  results
+end
