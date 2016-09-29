@@ -65,7 +65,7 @@ get '/students/:id' do
   student.to_s
 end
 
-# Relsease 0: Add Routes:
+# RELEASE 0: ADD ROUTES:
 
 # 1. /contact route:
 get '/contact/:address' do
@@ -100,3 +100,22 @@ get '/students/age/:agelower/:ageupper' do
   end
   results
 end
+
+# RELEASE 1: RESEARCH ON YOUR OWN:
+
+# # 1. Is Sinatra the only web app library in Ruby? What are some others?
+#   * Rails: seems like it is the best known
+#   * Hanami (formerly Lotus)
+#   * Volt
+#   * Remaze
+
+# # 2. Are SQLite and the sqlite3 gem your only options for using a database with Sinatra? What are some others?
+#   * PostgreSQL
+#   * Active Record
+#   * Datamapper
+
+# 3. What is meant by the term 'web stack'? Stack is the software components that make up a web application, which typically are:
+  # * Database
+  # * Operating system
+  # * Web server
+  # * Programming language
