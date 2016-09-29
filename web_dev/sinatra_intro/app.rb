@@ -90,7 +90,7 @@ get '/add/:num1/:num2' do
   "#{num1} + #{num2} = #{total}"
 end
 
-# 4. Search database and return something
+# 4. Search for and return students between a user-determined age range
 get '/students/age/:agelower/:ageupper' do
   students = db.execute("SELECT * FROM students WHERE age>? AND age<?", [params[:agelower], params[:ageupper]])
   results = ""
