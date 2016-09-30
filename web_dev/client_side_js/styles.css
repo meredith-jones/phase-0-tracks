@@ -1,0 +1,11 @@
+body {
+  background-color: lightgrey;
+  max-width: 960px;
+  min-width: 320px;
+}
+div {
+  display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: fixed;
+}
