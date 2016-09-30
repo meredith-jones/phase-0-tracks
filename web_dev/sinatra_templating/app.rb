@@ -29,3 +29,11 @@ post '/students' do
 end
 # All 3 methods of sending data to the server end up in params.
 # add static resources
+get '/campus' do
+  erb :campus
+end
+
+get '/campusresults' do
+  @campus = db.execute("SELECT * FROM students WHERE campus=(?)", [params['campus']])
+  erb :campusresults
+end
