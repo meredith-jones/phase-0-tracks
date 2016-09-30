@@ -26,3 +26,4 @@ var coyote_button = document.getElementById("3");
 pig_button.addEventListener("click", show_pig);
 sheep_button.addEventListener("click", show_sheep);
 coyote_button.addEventListener("click", show_coyote);
+
