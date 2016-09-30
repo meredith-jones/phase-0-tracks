@@ -11,7 +11,8 @@
   <p>Welcome to the student management system.</p>
   <p>Click <a href="students/new">here</a> to create a new student.</p>
   <p>Click <a href="campus">here</a> to choose a campus to view</p>
-<!--   Ice cream cones indicates we are using Ruby inside the HTML templates, sort of like interpolation symbols inside strings. '=' means you want to print the output of the expression to the screen. So we don't use the '=' unless we want to print. -->
+  <p>Click <a href="campus/new">here</a> to add a campus</p>
+
   <ul>
     <% @students.each do |student| %>
       <li><%= student['name'] %>, <%= student['age'] %></li>
@@ -19,3 +20,6 @@
   </ul>
 </body>
 </html>
+
+
+<!--   Ice cream cones indicates we are using Ruby inside the HTML templates, sort of like interpolation symbols inside strings. '=' means you want to print the output of the expression to the screen. So we don't use the '=' unless we want to print. -->
